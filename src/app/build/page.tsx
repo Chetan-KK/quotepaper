@@ -1,3 +1,4 @@
+import EditPanel from "@/components/build/EditPanel";
 import MainWallpaperSection from "@/components/build/MainWallpaperSection";
 import Header from "@/components/Header";
 import {
@@ -18,7 +19,7 @@ const page = () => {
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={25} maxSize={40} minSize={20}>
-          Two
+          <EditPanel />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
