@@ -7,7 +7,7 @@ const BuildHeader = () => {
   const { device, updateDevice } = useDeviceStoreWithRouter();
 
   return (
-    <div className="flex gap-3 items-center justify-center  ">
+    <div className="flex gap-3 items-center justify-center mt-5">
       <ToggleGroup type="single">
         <ToggleGroupItem
           onClick={() => updateDevice("laptop")}

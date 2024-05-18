@@ -6,9 +6,9 @@ import OutputWallpaper from "./OutputWallpaper";
 
 const MainWallpaperSection = () => {
   return (
-    <div className="grid grid-rows-[auto,1fr] h-full p-4">
+    <div className="grid grid-rows-[auto,1fr] h-full">
       <BuildHeader />
-      <div className=" h-full flex items-center justify-center">
+      <div className=" h-full flex items-center justify-center overflow-scroll p-4">
         <OutputWallpaper />
       </div>
     </div>

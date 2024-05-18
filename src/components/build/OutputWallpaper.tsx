@@ -4,6 +4,7 @@
 import useBackgroundStore from "@/store/useBackgroundStore";
 import { useDeviceStoreWithRouter } from "@/store/useDeviceStore";
 import React, { useEffect, useState } from "react";
+import Draggable from "react-draggable";
 
 const OutputWallpaper = () => {
   const { backgroundImage, backgroundOverlay, overlayColor } =
@@ -29,7 +30,9 @@ const OutputWallpaper = () => {
 
   return (
     <div
-      className={` h-[80%] relative`}
+      className={`${
+        backgroundImage ? undefined : "border"
+      } h-[80%] relative transition-all`}
       style={{
         aspectRatio: deviceAspect,
         backgroundImage: backgroundImage
@@ -39,13 +42,16 @@ const OutputWallpaper = () => {
         backgroundPosition: "center",
       }}
     >
-      <span
-        className={`absolute h-full w-full`}
+      <Draggable>
+        <div className="z-40 w-fit">ldksfj</div>
+      </Draggable>
+      <div
+        className={`absolute top-0 left-0 z-10 pointer-events-none h-full w-full`}
         style={{
           backgroundColor: overlayColor,
           opacity: `${backgroundOverlay}%`,
         }}
-      ></span>
+      ></div>
     </div>
   );
 };
