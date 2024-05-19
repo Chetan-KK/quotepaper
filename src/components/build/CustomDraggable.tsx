@@ -1,4 +1,3 @@
-// src/components/CustomDraggable.tsx
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import Draggable, { DraggableProps } from "react-draggable";
 
@@ -21,5 +20,7 @@ const CustomDraggable = forwardRef<HTMLDivElement, CustomDraggableProps>(
     );
   }
 );
+
+CustomDraggable.displayName = "CustomDraggable";
 
 export default CustomDraggable;
