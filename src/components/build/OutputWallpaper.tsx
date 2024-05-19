@@ -30,26 +30,36 @@ const OutputWallpaper = () => {
 
   return (
     <div
-      className={`${
-        backgroundImage ? undefined : "border"
-      } h-[80%] relative transition-all`}
-      style={{
-        aspectRatio: deviceAspect,
-        backgroundImage: backgroundImage
-          ? `url(${backgroundImage})`
-          : undefined,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className={`h-[80%] relative transition-all`}
+      style={{ aspectRatio: deviceAspect }}
     >
-      <Draggable>
-        <div className="z-40 w-fit">ldksfj</div>
+      {/* text */}
+      <Draggable bounds="parent">
+        <div className="z-20 w-fit">
+          I can only be moved within my offsetParent.
+        </div>
       </Draggable>
+
+      {/* background overlay */}
       <div
-        className={`absolute top-0 left-0 z-10 pointer-events-none h-full w-full`}
+        className="absolute top-0 left-0 -z-10 pointer-events-none h-full w-full"
         style={{
           backgroundColor: overlayColor,
           opacity: `${backgroundOverlay}%`,
+        }}
+      ></div>
+
+      {/* background image */}
+      <div
+        className={`absolute inset-0 -z-20 ${
+          backgroundImage ? undefined : "border"
+        }`}
+        style={{
+          backgroundImage: backgroundImage
+            ? `url(${backgroundImage})`
+            : undefined,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       ></div>
     </div>
