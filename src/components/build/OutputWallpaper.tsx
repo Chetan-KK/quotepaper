@@ -3,14 +3,18 @@
 // components/OutputWallpaper.js
 import useBackgroundStore from "@/store/useBackgroundStore";
 import { useDeviceStoreWithRouter } from "@/store/useDeviceStore";
+import { useTextQuoteStoreWithRouter } from "@/store/useTextQuoteStore";
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
+import CustomDraggable from "./CustomDraggable";
 
 const OutputWallpaper = () => {
   const { backgroundImage, backgroundOverlay, overlayColor } =
     useBackgroundStore();
   const { device } = useDeviceStoreWithRouter();
   const [deviceAspect, setDeviceAspect] = useState("16/9");
+
+  const { textQuote, updateTextQuote } = useTextQuoteStoreWithRouter();
 
   useEffect(() => {
     switch (device) {
@@ -34,11 +38,9 @@ const OutputWallpaper = () => {
       style={{ aspectRatio: deviceAspect }}
     >
       {/* text */}
-      <Draggable bounds="parent">
-        <div className="z-20 w-fit">
-          I can only be moved within my offsetParent.
-        </div>
-      </Draggable>
+      <CustomDraggable bounds="parent" childClassName="z-20 w-fit">
+        <div>{textQuote}</div>
+      </CustomDraggable>
 
       {/* background overlay */}
       <div

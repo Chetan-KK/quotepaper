@@ -1,16 +1,20 @@
 "use client";
 
 // EditPanel.js
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, useRef } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import useBackgroundStore, {
   useBackgroundStoreWithRouter,
 } from "@/store/useBackgroundStore";
+import useTextQuoteStore, {
+  useTextQuoteStoreWithRouter,
+} from "@/store/useTextQuoteStore";
 import { Slider } from "../ui/slider";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
+import { Textarea } from "../ui/textarea";
 
 const EditPanel: React.FC = () => {
   const {
@@ -22,12 +26,18 @@ const EditPanel: React.FC = () => {
     backgroundImage,
   } = useBackgroundStoreWithRouter();
 
+  const { textQuote, updateTextQuote } = useTextQuoteStoreWithRouter();
+
   const handleOverlayChange = (value: number[]) => {
     updateOverlayOpacity(value[0]);
   };
 
   const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateOverlayColor(event.target.value);
+  };
+
+  const handleQuoteChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    updateTextQuote(event.target.value);
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -46,8 +56,8 @@ const EditPanel: React.FC = () => {
   }
 
   return (
-    <div className="m-5">
-      <div className="grid gap-5 my-10">
+    <div className="">
+      <div className="grid gap-5 my-7 mx-5">
         <h1 className="text-2xl font-bold">Background</h1>
         <div className="grid items-center gap-3">
           <Label htmlFor="picture">Background Image</Label>
@@ -88,6 +98,18 @@ const EditPanel: React.FC = () => {
         </div>
       </div>
       <Separator />
+      <div className="grid gap-5 my-7 mx-5">
+        <div className="grid items-center gap-3">
+          <h1 className="text-2xl font-bold">Quote</h1>
+          <Label htmlFor="quote">Text</Label>
+          <Textarea
+            id="quote"
+            value={textQuote}
+            onChange={handleQuoteChange}
+            placeholder="Stay Focused"
+          />
+        </div>
+      </div>
     </div>
   );
 };
